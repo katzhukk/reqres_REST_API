@@ -6,7 +6,7 @@ import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
 
 
-public class reqresTests {
+public class reqresTests extends TestBase {
 
     @DisplayName("Запрос на регистрацию пользователя. POST - SUCCESSFUL REGISTRATION")
     @Test
@@ -19,10 +19,10 @@ public class reqresTests {
                 .contentType(JSON)
                 .log().uri()
 
-                .when()
-                .post("https://reqres.in/api/register")
+            .when()
+                .post("/register")
 
-                .then()
+            .then()
                 .log().status()
                 .log().body()
                 .statusCode(200)
@@ -40,10 +40,10 @@ public class reqresTests {
                 .contentType(JSON)
                 .log().uri()
 
-        .when()
-                .post("https://reqres.in/api/register")
+            .when()
+                .post("/register")
 
-        .then()
+            .then()
                 .log().status()
                 .log().body()
                 .statusCode(400);
@@ -60,10 +60,10 @@ public class reqresTests {
                 .contentType(JSON)
                 .log().uri()
 
-        .when()
-                .post("https://reqres.in/api/users")
+            .when()
+                .post("/users")
 
-        .then()
+            .then()
                 .log().status()
                 .log().body()
                 .statusCode(201)
@@ -77,10 +77,10 @@ public class reqresTests {
         given()
                 .log().uri()
 
-                .when()
-                .get("https://reqres.in/api/users/7")
+            .when()
+                .get("/users/7")
 
-                .then()
+            .then()
                 .log().status()
                 .log().body()
                 .statusCode(200)
@@ -97,7 +97,7 @@ public class reqresTests {
                 .log().uri()
 
                 .when()
-                .get("https://reqres.in/api/users/666")
+                .get("/users/666")
 
                 .then()
                 .log().status()
