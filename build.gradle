@@ -1,6 +1,5 @@
 plugins{
     id  'java'
-    id 'io.qameta.allure' version '2.12.0'
 }
 
 repositories{
@@ -15,27 +14,10 @@ compileTestJava {
     options.encoding = 'UTF-8'
 }
 
-
-allure{
-    report{//секция репорта
-        version.set("2.19.0")
-    }
-
-    adapter{
-        aspectjWeaver.set(true)
-        frameworks {
-            junit5 {
-                adapterVersion.set("2.19.0")
-            }
-        }
-    }
-}
-
 dependencies {
     testImplementation(
+            'io.rest-assured:rest-assured:5.3.1',
             'org.junit.jupiter:junit-jupiter-engine:5.11.2',
-            'com.codeborne:selenide:7.5.1',
-            'io.qameta.allure:allure-selenide:2.29.0',
             'org.slf4j:slf4j-simple:2.0.16'
     )
 }
@@ -50,11 +32,5 @@ tasks.withType(Test).configureEach {
             events "started", "skipped", "failed", "standard_error", "standard_out"
             exceptionFormat "short"
         }
-    }
-}
-
-tasks.register('SimpleGazpromBankTests', Test) {
-    useJUnitPlatform {
-        includeTags("simpleGazpromBankTests")
     }
 }
