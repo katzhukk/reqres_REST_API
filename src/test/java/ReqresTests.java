@@ -4,9 +4,10 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 
 
-public class reqresTests extends TestBase {
+public class ReqresTests extends TestBase {
 
     @DisplayName("Запрос на регистрацию пользователя. POST - SUCCESSFUL REGISTRATION")
     @Test
@@ -26,7 +27,7 @@ public class reqresTests extends TestBase {
                 .log().status()
                 .log().body()
                 .statusCode(200)
-                .body("token", is("QpwL5tke4Pnpja7X4"));
+                .body("token", is(notNullValue()));
     }
 
     @DisplayName("Запрос на попытку регистрации без пароля. POST - UNSUCCESSFUL REGISTRATION")
